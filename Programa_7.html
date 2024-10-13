@@ -35,8 +35,33 @@ const contactos = [
         const primerContacto = contactos[0];
         const ultimoContacto = contactos[contactos.length - 1];
 
-        console.log(`${primerContacto.nombre} / ${primerContacto.telefono} / ${primerContacto.email}`);
-        console.log(`${ultimoContacto.nombre} / ${ultimoContacto.telefono} / ${ultimoContacto.email}`);
+        //console.log(`${primerContacto.nombre} / ${primerContacto.telefono} / ${primerContacto.email}`);
+        //console.log(`${ultimoContacto.nombre} / ${ultimoContacto.telefono} / ${ultimoContacto.email}`);
+
+        //Tarea3
+
+        const nuevoContacto = { //Crear un nuevo contacto
+            nombre: prompt("Introduce el nombre del contacto"),
+            telefono: prompt("Introduce el teléfono del contacto"),
+            email: prompt("Introduce el email del contacto")
+        };
+
+        contactos.push(nuevoContacto); //Añadir el nuevo contacto al array
+
+        console.log(`${contactos[0].nombre} / ${contactos[0].telefono} / ${contactos[0].email}`); //Mostrar el primer contacto
+        console.log(`${contactos[contactos.length - 1].nombre} / ${contactos[contactos.length - 1].telefono} / ${contactos[contactos.length - 1].email}`);
+        //Mostrar el último contacto
+
+
+
+
+
+
+        
+        
+       
+
+
     </script>
     
 </body>
