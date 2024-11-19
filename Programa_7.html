@@ -32,6 +32,40 @@ const contactos = [
             email: "risus.Quisque@urna.ca"
         });
 
+        function showContact(contactList,index){
+            if (contactList instanceof Array && index >= 0 && index < contactList.length){
+                alert(`${contactList[index].nombre} / ${contactList[index].telefono} / ${contactList[index].email}`);
+            }else{
+                alert ("Lista de contactos o índice no válido");
+            }
+        }
+
+        function showAllContacts(contactList){
+            if(contactList instanceof Array){
+                let listaContactos = "";
+                let contactosLongitud = contactList.length;
+                for(let i = 0; i < contactosLongitud; i++){
+                    listaContactos+=`${contactList[i].nombre} / ${contactList[i].telefono} / ${contactList[i].email}\n`;
+                }
+                alert(listaContactos);
+            }else{
+                alert("Lista de contactos no válida");
+            }
+        }
+
+        function addNewContact(contactList, nombre, telefono, email){
+            if(contactList instanceof Array && nombre && telefono && email){
+                contactList.push({
+                    nombre: nombre,
+                    telefono: telefono,
+                    email: email
+                });
+                alert("Contacto añadido");
+            }else{
+                alert("Faltan datos para añadir el contacto");
+            }
+        }
+
         let opcion;
 
         do{
@@ -39,31 +73,19 @@ const contactos = [
             opcion = prompt("¿Qué quieres hacer? (primero / último / todos / nuevo / salir)");
         
             if(opcion === "primero"){
-                alert(`${contactos[0].nombre} / ${contactos[0].telefono} / ${contactos[0].email}`);
+                showContact(contactos, 0);
             }
             else if(opcion === "último"){
-                alert(`${contactos[contactos.length - 1].nombre} / ${contactos[contactos.length - 1].telefono} / ${contactos[contactos.length - 1].email}`);
+                showContact(contactos, contactos.length - 1);
             }
             else if(opcion === "todos"){
-                let listaContactos = "";
-                for(let i = 0; i < contactos.length; i++){
-                    listaContactos+=`${contactos[i].nombre} / ${contactos[i].telefono} / ${contactos[i].email}\n`;
-                }
-                alert(listaContactos);
+                showAllContacts(contactos);
             }
             else if(opcion === "nuevo"){
-                const nuevoContacto = {
-                    nombre: prompt("Introduce el nombre del contacto"),
-                    telefono: prompt("Introduce el teléfono del contacto"),
-                    email: prompt("Introduce el email del contacto")
-                };
-
-                if(nuevoContacto.nombre && nuevoContacto.telefono && nuevoContacto.email){
-                    contactos.push(nuevoContacto);
-                    alert("Contacto añadido");
-                }else{
-                    alert("Faltan datos para añadir el contacto");
-                }
+                let nombre = prompt("Introduce el nombre");
+                let telefono = prompt("Introduce el teléfono");
+                let email = prompt("Introduce el email");
+                addNewContact(contactos, nombre, telefono, email);
             }
             else if(opcion === "salir"){
                 alert("Salir del programa");
