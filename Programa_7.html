@@ -66,11 +66,24 @@ const contactos = [
             }
         }
 
+        function sortContacts(contactList, x){ // funcion para ordenar los contactos, recibe la lista de contactos y el criterio x por el que se quiere ordenar
+            if(contactList instanceof Array){ 
+                if(["nombre", "telefono", "email"].includes(x)){ // si el criterio x incluye nombre, telefono o email
+                    contactList.sort((a,b) => a[x].localeCompare(b[x])); // ordena la lista de contactos por el criterio x
+                    alert(`Contactos ordenados por ${x}`); 
+            }else{
+                alert("Criterio no válido");
+            }
+        }else{
+            alert("Lista de contactos no válida");
+        }
+    }
+
         let opcion;
 
         do{
 
-            opcion = prompt("¿Qué quieres hacer? (primero / último / todos / nuevo / salir)");
+            opcion = prompt("¿Qué quieres hacer? (primero / último / todos / nuevo / ordenar / salir)");
         
             if(opcion === "primero"){
                 showContact(contactos, 0);
@@ -83,9 +96,14 @@ const contactos = [
             }
             else if(opcion === "nuevo"){
                 let nombre = prompt("Introduce el nombre");
-                let telefono = prompt("Introduce el teléfono");
+                let telefono = prompt("Introduce el telefono");
                 let email = prompt("Introduce el email");
                 addNewContact(contactos, nombre, telefono, email);
+            }
+            else if (opcion === "ordenar"){
+                let criterio = prompt("¿Por qué criterio quieres ordenar? (nombre / telefono / email)"); // se pide el criterio por el que se quiere ordenar
+                sortContacts(contactos, criterio); // se llama a la función sortContacts con la lista de contactos y el criterio por el que se quiere ordenar
+                showAllContacts(contactos); // se llama a la función showAllContacts para mostrar la lista de contactos ordenada
             }
             else if(opcion === "salir"){
                 alert("Salir del programa");
